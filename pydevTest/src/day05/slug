@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    
+    <title>Uliweb Zone - 论坛</title>
+    <!-- toplinks -->
+<script type="text/javascript" src="/static/jquery/jquery-1.7.2.min.js?ver=2"></script>
+<script type="text/javascript" src="/static/jsutils/json2.js?ver=2"></script>
+<!--[if lt IE 9]>
+<script type="text/javascript" src="/static/bootstrap/asset/html5.js?ver=2"></script>
+<![endif]-->
+<link rel="stylesheet" type="text/css" href="/static/bootstrap/2.2.0/bootstrap.min.css?ver=2"/>
+<script type="text/javascript" src="/static/bootstrap/2.2.0/js/bootstrap.min.js?ver=2"></script>
+<link rel="stylesheet" type="text/css" href="/static/bootstrap_extend.css?ver=2"/>
+<link rel="stylesheet" type="text/css" href="/static/jquery/ui/css/redmond/jquery-ui-1.8.16.custom.css?ver=2"/>
+<link rel="stylesheet" type="text/css" href="/static/pnotify/1.2.0/jquery.pnotify.default.css?ver=2"/>
+<link rel="stylesheet" type="text/css" href="/static/pnotify/1.2.0/jquery.pnotify.default.icons.css?ver=2"/>
+<script type="text/javascript" src="/static/pnotify/1.2.0/jquery.pnotify.min.js?ver=2"></script>
+<link rel="stylesheet" type="text/css" href="/static/bootheme/bootheme.css?ver=2"/>
+<link rel="stylesheet" type="text/css" href="/static/poshytip/tip-twitter/tip-twitter.css?ver=2"/>
+<link rel="stylesheet" type="text/css" href="/static/poshytip/tip-yellow/tip-yellow.css?ver=2"/>
+<link rel="stylesheet" type="text/css" href="/static/poshytip/tip-yellowsimple/tip-yellowsimple.css?ver=2"/>
+<script type="text/javascript" src="/static/poshytip/jquery.poshytip.js?ver=2"></script>
+<link rel="stylesheet" type="text/css" href="/static/forums/forums.css?ver=2"/>
+<script type="text/javascript" src="/static/xheditor/1.2.1/xheditor-1.2.1.min.js?ver=2"></script>
+<script type="text/javascript" src="/static/xheditor/1.2.1/xheditor_lang/zh-cn.js?ver=2"></script>
+<link rel="stylesheet" type="text/css" href="/static/fancybox/jquery.fancybox.css?ver=2"/>
+<script type="text/javascript" src="/static/fancybox/jquery.fancybox.min.js?ver=2"></script>
+    
+    
+  
+<script>$.ajaxSetup({cache:false, traditional:true});</script></head>
+
+<body class="bootstrap-body">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+$.extend($.pnotify.defaults, {"styling":"bootstrap"});
+var show_message = function(message, category){
+    $.pnotify({
+        //pnotify_title: 'Regular Notice',
+        pnotify_history: false,
+        pnotify_text: message,
+        pnotify_type: category || 'success',
+        pnotify_animation: 'fade',
+        pnotify_before_open: function(pnotify){
+           // Position this notice in the center of the screen.
+           pnotify.css({
+               "top": 1,
+               "left": ($(top.window).width() / 2) - (pnotify.width() / 2)
+           });
+        }
+    });
+}
+
+$(function(){
+    
+});
+</script>
+
+
+<script>
+// using jQuery
+function getCookie(name) {
+    var cookieValue = null;
+    if (document.cookie && document.cookie != '') {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = jQuery.trim(cookies[i]);
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+
+function csrfSafeMethod(method) {
+    // these HTTP methods do not require CSRF protection
+    return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+}
+$.ajaxSetup({
+    crossDomain: false, // obviates need for sameOrigin test
+    beforeSend: function(xhr, settings) {
+        if (!csrfSafeMethod(settings.type)) {
+            xhr.setRequestHeader("X-CSRFToken", getCookie('_csrf_token'));
+        }
+    }
+});
+</script>
+
+
+
+
+<div class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container-fluid">
+      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+      <a class="brand" href="#">Uliweb Zone</a>
+      <div class="nav-collapse">
+        
+<ul class="nav">
+    
+<li><a href="/"><span>Home</span></a></li><li class="active"><a href="/forum"><span>Forum</span></a></li><li><a href="/tutorial"><span>Tutorial</span></a></li><li><a href="/wiki"><span>Wiki</span></a></li><li><a href="/user/view"><span>Admin</span></a></li><li><a href="/about"><span>About</span></a></li>
+
+</ul>
+
+      
+<style>
+#userinfo.btn-toolbar {margin-top:0;margin-bottom:0;font-size:14px;}
+#userinfo.btn-toolbar a{vertical-align:middle;}
+#userinfo img {
+-webkit-border-radius: 3px;
+   -moz-border-radius: 3px;
+        border-radius: 3px;
+}
+#userinfo [class^="icon-"], #userinfo [class*=" icon-"], #userinfo [class^="icon-"]:hover, #userinfo [class*=" icon-"]:hover{
+    vertical-align:middle;
+    margin-bottom:3px;
+}
+</style>
+    
+
+    
+      <div id="userinfo" class="btn-toolbar pull-right userinfo">
+        <div class="btn-group">
+          <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">
+            <img id="user_image" src="/static/images/user20x20.jpg?ver=2" align="top"/> larryzheng 
+            <b class="caret"></b></a><span style="padding-right:40px;"></span>
+          <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+            <li><a href="/admin/messages/list" target="_blank" id=""><i class="icon-envelope"></i> 收到的消息</a></li>
+            <li class="divider"></li>
+            <li><a href="/logout"><i class="icon-off"></i> Logout</a></li>
+          </ul>
+        </div>
+      </div>
+    
+
+    
+        
+        <script type="text/javascript">
+        function query() {
+            $.ajax({
+                type: "POST",
+                url: "/admin/messages/number",
+                success: function(r){
+                    if (r.success && r.data>0){
+                        $('#user_image').poshytip('update', r.data+' 条新消息，<a href="/admin/messages/list">点击查看</a>');
+                        $('#user_image').poshytip('show');
+                    }
+                    setTimeout(query, 300000);
+                }
+            });
+        }    
+        $(function(){
+            $('#user_image').poshytip({
+              className: 'tip-yellowsimple',
+              content: '0 条新消息，<a href="/admin/messages/list">点击查看</a>',
+              showOn: 'none',
+              alignTo: 'target',
+              alignX: 'center',
+              alignY: 'bottom',
+              offsetX: 0,
+              offsetY: 5,
+              closeButton: true
+            });
+            
+            setTimeout(query, 1000);
+        });
+        </script>
+        
+    
+
+      </div><!--/.nav-collapse -->
+    </div>
+  </div>
+</div>
+
+    
+
+
+
+<div id="forum" class="container">
+    <div class="content content-outter">
+    
+    <ul class="breadcrumb">
+      <li>
+        <a href="/forum" class="home" title="首页">论坛首页</a> <span class="divider">/</span>
+      </li>
+      <li class="active">
+        <a href="/forum/2">涂鸦专区</a>
+      </li>
+    </ul>
+
+    
+<style>
+    #field_subject {width:80%;}
+</style>
+
+<div class="content">
+    <div class="box center">
+        <h2>发表新主题</h2>
+        <div class="box-body">
+            <form action="" class="form-horizontal" method="POST">
+<input type="hidden" name="csrf_token" value="0517b88a142146b19c32a99511508af6">
+<div class="control-group" id="div_field_topic_type">
+    <label class="control-label" for="field_topic_type">主题分类名称:</label>
+    <div class="controls">
+    <select class="field" id="field_topic_type" name="topic_type" placeholder="">
+
+</select>
+
+    <p class="help help-block"></p>
+</div>
+
+</div>
+
+<div class="control-group" id="div_field_subject">
+    <label class="control-label" for="field_subject">标题:<span class="field_required">*</span></label>
+    <div class="controls">
+    <input class="field" id="field_subject" name="subject" placeholder="" type="text" value=""></input>
+    <p class="help help-block"></p>
+</div>
+
+</div>
+
+<div class="control-group" id="div_field_content">
+    <label class="control-label" for="field_content">内容:<span class="field_required">*</span></label>
+    <div class="controls">
+    <textarea class="field" cols id="field_content" name="content" placeholder="" rows="4"></textarea>
+    <p class="help help-block"></p>
+</div>
+
+</div>
+
+<input class="field" id="field_slug" name="slug" placeholder="" type="hidden" value="0eceb516228c11e3a791f23c91693c1b"></input>
+<div class="control-group" id="div_field_reply_email">
+    <label class="control-label" for="field_reply_email">有回复时邮件通知我</label>
+    <div class="controls">
+    <input class="checkbox" id="field_reply_email" name="reply_email" placeholder="" type="checkbox"></input>
+    <p class="help help-block"></p>
+</div>
+
+</div>
+
+<div class="control-group" id="div_field_enable_comment">
+    <label class="control-label" for="field_enable_comment">是否允许回复</label>
+    <div class="controls">
+    <input checked class="checkbox" id="field_enable_comment" name="enable_comment" placeholder="" type="checkbox"></input>
+    <p class="help help-block"></p>
+</div>
+
+</div>
+
+
+<div class="form-actions">
+    <button class="btn btn-primary" type="submit">Create</button>
+</div>
+
+</form>
+
+        </div>
+    </div>
+</div>
+<style type="text/css">  
+<!--  
+/* 增加插入代码工具图标 */  
+.btnCode {  
+    background:transparent url(/static/xheditor/1.2.1/xheditor_plugins/code.png) no-repeat 20px 20px;  
+    background-position:3px 3px;  
+}  
+.btnQuote {  
+    background:transparent url(/static/xheditor/1.2.1/xheditor_plugins/quote.gif) no-repeat 20px 20px;  
+    background-position:3px 3px;  
+}
+-->  
+</style>  
+<script type="text/javascript">
+    var pic_addr;
+    var plugins = {
+        Code:{  
+            c:'btnCode',t:'插入代码',h:1,e:function(){  
+                var _this=this;  
+                var htmlCode=('<div><select id="xheCodeType">'+
+                '<option value="xml">HTML/XML</option>'+
+                '<option value="javascript">JavaScript</option>'+
+                '<option value="css">CSS</option>'+
+                '<option value="php">PHP</option>'+
+                '<option value="csharp">C#</option>'+
+                '<option value="cpp">C++</option>'+
+                '<option value="java">Java</option>'+
+                '<option value="perl">Perl</option>'+
+                '<option value="python">Python</option>'+
+                '<option value="ruby">Ruby</option>'+
+                '<option value="vb">Visual Basic</option>'+
+                '<option value="delphi">Delphi</option>'+
+                '<option value="as3">Action Script 3</option>'+
+                '<option value="sql">SQL</option>'+
+                '<option value="plain">其它</option>'+
+                '</select></div>'+
+                '<div><textarea id="xheCodeValue" wrap="soft" spellcheck="false" style="width:300px;height:100px;" /></div>'+
+                '<div style="text-align:right;"><input type="button" id="xheSave" value="确定" /></div>');  
+                var jCode=$(htmlCode),jType=$('#xheCodeType',jCode),jValue=$('#xheCodeValue',jCode),jSave=$('#xheSave',jCode);  
+                jSave.click(function(){  
+                    _this.loadBookmark();  
+                    var txt = $('<div/>').text(jValue.val()).html();
+                    _this.pasteHTML('<pre class="brush: '+jType.val()+';">\r\n'+txt+'\r\n</pre><p>&nbsp;</p>');  
+                    _this.hidePanel();
+                    return false;     
+                });  
+                _this.showDialog(jCode);  
+            }  
+        },
+        Quote:{
+            c:'btnQuote',t:'引用文本',h:1,e:function(){  
+                var _this=this;
+                var htmlCode=('<div><textarea id="xheText" wrap="soft" spellcheck="false" style="width:300px;height:100px;" /></div>'+
+                '<div style="text-align:right;"><input type="button" id="xheSave" value="确定" /></div>');  
+                var jCode=$(htmlCode),jValue=$('#xheText',jCode),jSave=$('#xheSave',jCode);  
+                jSave.click(function(){  
+                    _this.loadBookmark();  
+                    var txt = $('<div/>').text(jValue.val()).html();
+                    _this.pasteHTML('<blockquote>'+txt+'</blockquote><p>&nbsp;</p>');  
+                    _this.hidePanel();
+                    return false;     
+                });  
+                _this.showDialog(jCode);  
+            }  
+        }
+    }
+</script>
+<style type="text/css">  
+<!--  
+.btnDraw {  
+    background:transparent url(/static/forums/draw.png) no-repeat 20px 20px;  
+    background-position:3px 3px;  
+}  
+-->  
+</style>  
+<script type="text/javascript">
+    var pic_addr;
+    var draw_plugins = {
+        Draw:{  
+            c:'btnDraw',t:'在线涂鸦',h:1,e:function(){  
+                var _this=this; 
+                $('<a href="/forum/draw/2/0eceb516228c11e3a791f23c91693c1b"></a>').fancybox( {
+                    type : 'iframe',
+                    autoSize : false,
+                    width : 700,
+                    height: 350,
+                    afterClose:function(){
+                        if(pic_addr){
+                            _this.pasteHTML("<img src="+pic_addr+"></img>");
+                        }
+                     } 
+                 }).click();
+                
+            }  
+        }
+    }
+</script>
+
+<style type="text/css">  
+<!--  
+.btnMp3 {  
+    background:transparent url(/static/forums/mic.png) no-repeat 20px 20px;  
+    background-position:3px 3px;  
+}  
+-->  
+</style>  
+<script type="text/javascript">
+    var mp3addr;
+    var mp3upload_plugins = {
+        Mp3upload:{  
+            c:'btnMp3',t:'语音回复',h:1,e:function(){  
+                var _this=this; 
+                $('<a href="/forum/mp3upload/2/0eceb516228c11e3a791f23c91693c1b"></a>').fancybox( {
+                    type : 'iframe',
+                    autoSize : false,
+                    width : 700,
+                    height: 350,
+                    afterClose:function(){
+                        if(mp3addr){
+                            _this.pasteHTML("<a href="+mp3addr+">录音</a>");
+                        }
+                     } 
+                 }).click();
+                
+            }  
+        }
+    }
+</script>
+
+
+
+<script type="text/javascript">
+    $(function(){
+        $('textarea').xheditor({
+            tools:'Cut,Copy,Paste,Pastetext,|,Blocktag,Fontface,FontSize,Bold,Italic,Underline,Strikethrough,FontColor,BackColor,SelectAll,Removeformat,|,Align,List,Outdent,Indent,|,Link,Unlink,Anchor,Img,Flash,Hr,Emot,Table,Code,Quote,Draw,Mp3upload,|,About',
+            skin:'vista',
+            upLinkUrl:"!/upload_file?forum_id=2&slug=0eceb516228c11e3a791f23c91693c1b",
+            upFlashUrl:"!/upload_file?forum_id=2&slug=0eceb516228c11e3a791f23c91693c1b",
+            upFlashExt:"swf",
+            upImgUrl:"!/upload_image?forum_id=2&slug=0eceb516228c11e3a791f23c91693c1b",
+            plugins:$.extend(plugins, mp3upload_plugins),
+            plugins:$.extend(plugins, draw_plugins),
+            height:300,
+            localUrlTest:/^https?:\/\/[^\/]*?(xxx\.com)\//i,
+            remoteImgSaveUrl:'/forum/paste_image?forum_id=2&slug=0eceb516228c11e3a791f23c91693c1b'
+        });
+        
+            //设置poshytip关闭图片
+            $.fn.poshytip.defaults.closeImage = '/static/jqutils/cross_grey_small.png?ver=2';
+            var el = $('#field_reply_email').poshytip({
+                className: 'tip-yellowsimple',
+                content: '您尚未设置邮箱，将无法处理邮件',
+                showOn: 'none',
+                alignTo: 'target',
+                alignX: 'inner-left',
+                offsetX: 0,
+                offsetY: 5,
+                closeButton: true
+            });
+            el.poshytip('show');
+        
+    });
+</script>
+
+
+
+    </div>
+</div>
+
+
+
+<div class="container">
+  <footer class="row">
+  
+<p>
+Uliweb
+</p>
+
+  </footer>
+</div>
+      
+
+
+
+  </body>
+</html>
+

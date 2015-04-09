@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    
+    <title>Uliweb Zone - 教程 - python中级教程 - python-gtk</title>
+    <!-- toplinks -->
+<script type="text/javascript" src="/static/jquery/jquery-1.7.2.min.js?ver=2"></script>
+<script type="text/javascript" src="/static/jsutils/json2.js?ver=2"></script>
+<!--[if lt IE 9]>
+<script type="text/javascript" src="/static/bootstrap/asset/html5.js?ver=2"></script>
+<![endif]-->
+<link rel="stylesheet" type="text/css" href="/static/bootstrap/2.2.0/bootstrap.min.css?ver=2"/>
+<script type="text/javascript" src="/static/bootstrap/2.2.0/js/bootstrap.min.js?ver=2"></script>
+<link rel="stylesheet" type="text/css" href="/static/bootstrap_extend.css?ver=2"/>
+<link rel="stylesheet" type="text/css" href="/static/jquery/ui/css/redmond/jquery-ui-1.8.16.custom.css?ver=2"/>
+<link rel="stylesheet" type="text/css" href="/static/pnotify/1.2.0/jquery.pnotify.default.css?ver=2"/>
+<link rel="stylesheet" type="text/css" href="/static/pnotify/1.2.0/jquery.pnotify.default.icons.css?ver=2"/>
+<script type="text/javascript" src="/static/pnotify/1.2.0/jquery.pnotify.min.js?ver=2"></script>
+<link rel="stylesheet" type="text/css" href="/static/bootheme/bootheme.css?ver=2"/>
+<link rel="stylesheet" type="text/css" href="/static/tutorials/tutorials.css?ver=2"/>
+<link rel="stylesheet" type="text/css" href="/static/poshytip/tip-twitter/tip-twitter.css?ver=2"/>
+<link rel="stylesheet" type="text/css" href="/static/poshytip/tip-yellow/tip-yellow.css?ver=2"/>
+<link rel="stylesheet" type="text/css" href="/static/poshytip/tip-yellowsimple/tip-yellowsimple.css?ver=2"/>
+<script type="text/javascript" src="/static/poshytip/jquery.poshytip.js?ver=2"></script>
+<script type="text/javascript" src="/static/jquery/ui/js/jquery-ui-1.8.16.custom.min.js?ver=2"></script>
+<script type="text/javascript" src="/static/jquery/ui/js/jquery.ui.datepicker.zh.js?ver=2"></script>
+<link rel="stylesheet" type="text/css" href="/static/bootstrap/asset/prettify.css?ver=2"/>
+<script type="text/javascript" src="/static/bootstrap/asset/prettify.js?ver=2"></script>
+<link rel="stylesheet" type="text/css" href="/static/pageslide/jquery.pageslide.css?ver=2"/>
+<script type="text/javascript" src="/static/jqutils/jquery.form.js?ver=2"></script>
+<link rel="stylesheet" type="text/css" href="/static/jqutils/jqutils.css?ver=2"/>
+<script type="text/javascript" src="/static/jqutils/jqrselect.js?ver=2"></script>
+<script type="text/javascript" src="/static/jqutils/jqutils.js?ver=2"></script>
+<link rel="stylesheet" type="text/css" href="/static/toc/toc.css?ver=2"/>
+<link rel="stylesheet" type="text/css" href="/static/bootstrap/fontawesome/css/font-awesome.css?ver=2"/>
+<!--[if IE 7]>
+  <link rel="stylesheet" href="/static/bootstrap/fontawesome/css/font-awesome-ie7.css">
+<![endif]-->
+
+<script type="text/javascript" src="/static/tutorials/comment.js?ver=2"></script>
+<link rel="stylesheet" type="text/css" href="/static/jqutils/ui.totop.css?ver=2"/>
+<script type="text/javascript" src="/static/jqutils/jquery.ui.totop.js?ver=2"></script>
+<script type="text/javascript" src="/static/jqutils/jquery.hotkeys.js?ver=2"></script>
+    
+    
+  </head>
+
+<body class="bootstrap-body">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+$.extend($.pnotify.defaults, {"styling":"bootstrap"});
+var show_message = function(message, category){
+    $.pnotify({
+        //pnotify_title: 'Regular Notice',
+        pnotify_history: false,
+        pnotify_text: message,
+        pnotify_type: category || 'success',
+        pnotify_animation: 'fade',
+        pnotify_before_open: function(pnotify){
+           // Position this notice in the center of the screen.
+           pnotify.css({
+               "top": 1,
+               "left": ($(top.window).width() / 2) - (pnotify.width() / 2)
+           });
+        }
+    });
+}
+
+$(function(){
+    
+});
+</script>
+
+
+<script>
+// using jQuery
+function getCookie(name) {
+    var cookieValue = null;
+    if (document.cookie && document.cookie != '') {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = jQuery.trim(cookies[i]);
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+
+function csrfSafeMethod(method) {
+    // these HTTP methods do not require CSRF protection
+    return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+}
+$.ajaxSetup({
+    crossDomain: false, // obviates need for sameOrigin test
+    beforeSend: function(xhr, settings) {
+        if (!csrfSafeMethod(settings.type)) {
+            xhr.setRequestHeader("X-CSRFToken", getCookie('_csrf_token'));
+        }
+    }
+});
+</script>
+
+
+
+
+<div class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container-fluid">
+      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+      <a class="brand" href="#">Uliweb Zone</a>
+      <div class="nav-collapse">
+        
+<ul class="nav">
+    
+<li><a href="/"><span>首页</span></a></li><li><a href="/forum"><span>论坛</span></a></li><li class="active"><a href="/tutorial"><span>教程</span></a></li><li><a href="/wiki"><span>Wiki</span></a></li><li><a href="/user/view"><span>管理</span></a></li><li><a href="/about"><span>关于</span></a></li>
+
+
+
+</ul>
+
+      
+<style>
+#userinfo.btn-toolbar {margin-top:0;margin-bottom:0;font-size:14px;}
+#userinfo.btn-toolbar a{vertical-align:middle;}
+#userinfo img {
+-webkit-border-radius: 3px;
+   -moz-border-radius: 3px;
+        border-radius: 3px;
+}
+#userinfo [class^="icon-"], #userinfo [class*=" icon-"], #userinfo [class^="icon-"]:hover, #userinfo [class*=" icon-"]:hover{
+    vertical-align:middle;
+    margin-bottom:3px;
+}
+</style>
+    
+
+    
+        <p class="pull-right user_info">
+            <a href="/login">登录</a> | <a href="/register">注册</a>
+        </p>
+    
+
+    
+        
+    
+
+      </div><!--/.nav-collapse -->
+    </div>
+  </div>
+</div>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<style>
+#pageslide {
+width:320px;
+}
+#toc {width:22%;}
+/* scrollbar  */
+.nano .content      { padding: 10px; }
+.nano .pane         { background: #999; }
+.nano .pane .slider { background: #111; }
+
+</style>
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span12">
+            <ul class="breadcrumb">
+              <li>
+                <a href="/tutorial">返回</a> <span class="divider">/</span>
+              </li>
+              <li>
+                <a href="/tutorial/read/21">python中级教程</a> <span class="divider">/</span>
+              </li>
+              <li class="active">
+                python-gtk
+              </li>
+            </ul>
+        </div>
+    </div>
+    <div class="row-fluid">
+        <div class="span9" id="article">
+            <!-- Prompt IE 6 users to install Chrome Frame. Remove this if you support IE 6.
+      chromium.org/developers/how-tos/chrome-frame-getting-started -->
+ <!--[if lt IE 8]><div class="alert alert-info">Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</div><![endif]-->
+
+            <div class="outter">
+                <div class="chapter-prev chapter-top animated">
+                    <a prev-chapter href="/tutorial/view_chapter/210"><i class="icon-arrow-left"></i> 5 多线程</a>
+                </div>
+                <div class="chapter-next chapter-top animated">
+                    <a next-chapter href="/tutorial/view_chapter/251">7 with..as <i class="icon-arrow-right"></i></a>
+                </div>
+                <div class="expander">&raquo;</div>
+                <div class="content-inner rounded_bottom article">
+                    <h1>python-gtk</h1>
+                    <div style="margin-top:-10px;margin-bottom:20px;">
+                        <!-- 评论 <a id="global-comment-count" href="/tutorial/view_paragraph_comments/241?para=0" class="para-comments-count active right animated">0</a> -->
+                            <span class="gray">hejiasheng 于 2013-09-11 02:06:43+00:00 更新</span>
+                            <span class="label label-info">访问次数：194</span>
+                        
+                    </div>
+                    
+                    
+                
+                    <h3 id="title_0-0-1">安装<a class="anchor" href="#title_0-0-1">&para;</a></h3>
+<pre class="prettyprint linenums pre-scrollable"><code>sudo aptitude install python-gtk2</code></pre>
+<pre class="prettyprint linenums pre-scrollable"><code>http://sourceforge.net/projects/zero-install/files/PyGTK/2.24.0/</code></pre>
+<h3 id="title_0-0-2">文档<a class="anchor" href="#title_0-0-2">&para;</a></h3>
+<p><a href="http://www.pygtk.org/pygtk2tutorial/ch-Introduction.html#sec-ExploringPygtk" class="outter">http://www.pygtk.org/pygtk2tutorial/ch-Introduction.html#sec-ExploringPygtk</a></p>
+<h3 id="title_0-0-3">第一个例子<a class="anchor" href="#title_0-0-3">&para;</a></h3>
+<pre class="prettyprint linenums pre-scrollable"><code>#coding:utf-8
+
+import pygtk
+import gtk
+
+window = gtk.Window(gtk.WINDOW_TOPLEVEL)
+window.show()
+
+gtk.main()</code></pre>
+<h3 id="title_0-0-4">增加关闭（撤销）事件<a class="anchor" href="#title_0-0-4">&para;</a></h3>
+<pre class="prettyprint linenums pre-scrollable"><code>#coding:utf-8
+
+import pygtk
+import gtk
+
+def destroy(widget,data=None):
+        gtk.main_quit()
+
+window = gtk.Window(gtk.WINDOW_TOPLEVEL)
+window.connect("destroy",destroy)
+window.show()
+
+gtk.main()</code></pre>
+<h3 id="title_0-0-5">增加按钮<a class="anchor" href="#title_0-0-5">&para;</a></h3>
+<pre class="prettyprint linenums pre-scrollable"><code>#coding:utf-8
+
+import pygtk
+import gtk
+
+def destroy(widget,data=None):
+        gtk.main_quit()
+
+def button1(widget,data=None):
+        print "hello"
+
+class app:
+        def __init__(self):
+                window = gtk.Window(gtk.WINDOW_TOPLEVEL)
+                self.window = window
+                window.connect("destroy",destroy)
+
+        def button(self,name,cbevent):
+                self.b = gtk.Button(name)
+                self.b.connect('clicked',cbevent,None)
+                self.window.add(self.b)
+                self.b.show()
+
+w = app()
+w.button("按钮",button1)
+w.window.show()
+gtk.main()</code></pre>
+<h3 id="title_0-0-6">box 和多按钮参数（data）<a class="anchor" href="#title_0-0-6">&para;</a></h3>
+<pre class="prettyprint linenums pre-scrollable"><code>#coding:utf-8
+
+import pygtk
+import gtk
+
+def destroy(widget,data=None):
+        gtk.main_quit()
+
+def button1(widget,data=None):
+        print "hello %s" % data
+
+class app:
+        def __init__(self):
+                window = gtk.Window(gtk.WINDOW_TOPLEVEL)
+                self.window = window
+                self.window.set_border_width(10)
+                self.window.set_default_size(400,10)
+                window.connect("destroy",destroy)
+
+        def newbox(self):
+                self.box1 = gtk.HBox(False,0)
+                self.window.add(self.box1)
+        def newbutton(self,name,cbevent):
+                b = gtk.Button(name)
+                b.connect('clicked',cbevent,name)
+                self.box1.pack_start(b,True,True,0)
+                b.show()
+w = app()
+w.newbox()
+w.newbutton(u"1",button1)
+w.newbutton(u"2",button1)
+
+w.box1.show()
+
+w.window.show()
+
+gtk.main()</code></pre>
+<h3 id="title_0-0-7">增加了 vbox，hbox，entry例子<a class="anchor" href="#title_0-0-7">&para;</a></h3>
+<pre class="prettyprint linenums pre-scrollable"><code>#coding:utf-8
+
+import pygtk
+import gtk
+
+e = 0 
+def destroy(widget,data=None):
+        gtk.main_quit()
+
+def button1(widget,data=None):
+        if data == '1':
+                print e.get_text()
+        else:
+                e.set_text('2')
+
+class app:
+        def __init__(self):
+                window = gtk.Window(gtk.WINDOW_TOPLEVEL)
+                self.window = window
+                self.window.set_border_width(10)
+                self.window.set_default_size(400,10)
+                window.connect("destroy",destroy)
+
+        def newhbox(self):
+                self.box1 = gtk.HBox(False,0)
+                self.box2.pack_start(self.box1,True,True,0)
+           
+        def newvbox(self):
+                self.box2 = gtk.VBox(False,0)
+                self.window.add(self.box2)
+        def newbutton(self,name,cbevent):
+                b = gtk.Button(name)
+                b.connect('clicked',cbevent,name)
+                self.box1.pack_start(b,True,True,0)
+                b.show()
+
+        def newentry(self):
+                global e
+                e = gtk.Entry()
+                self.box2.pack_start(e,True,True,0)
+                e.show()
+w = app()
+w.newvbox()
+w.newentry()
+w.newhbox()
+w.newbutton(u"1",button1)
+w.newbutton(u"2",button1)
+
+w.box1.show()
+w.box2.show()
+w.window.show()
+
+gtk.main()</code></pre>
+<h3 id="title_0-0-8">增加了timeout  跳动事件<a class="anchor" href="#title_0-0-8">&para;</a></h3>
+<pre class="prettyprint linenums pre-scrollable"><code>#coding:utf-8
+
+import pygtk
+import gobject
+import gtk
+
+e      = 0
+count  = 1
+isexit = 0
+def destroy(widget,data=None):
+        gtk.main_quit()
+
+def timer_cb():
+        global count
+        if isexit == 1:
+                return
+        count +=1
+        e.set_text(str(count))
+        gobject.timeout_add(100,timer_cb)
+
+def button1(widget,data=None):
+        global isexit
+        if data == 'start':
+                isexit = 0
+                gobject.timeout_add(100,timer_cb)
+        else:
+                isexit = 1
+                e.set_text('stop')
+
+class app:
+        def __init__(self):
+                window = gtk.Window(gtk.WINDOW_TOPLEVEL)
+                self.window = window
+                self.window.set_border_width(10)
+                self.window.set_default_size(400,10)
+                window.connect("destroy",destroy)
+
+        def newhbox(self):
+                self.box1 = gtk.HBox(False,0)
+                self.box2.pack_start(self.box1,True,True,0)
+
+        def newvbox(self):
+                self.box2 = gtk.VBox(False,0)
+                self.window.add(self.box2)
+        def newbutton(self,name,cbevent):
+                b = gtk.Button(name)
+                b.connect('clicked',cbevent,name)
+                self.box1.pack_start(b,True,True,0)
+                b.show()
+
+        def newentry(self):
+                global e
+                e = gtk.Entry()
+                self.box2.pack_start(e,True,True,0)
+                e.show()
+w = app()
+w.newvbox()
+w.newentry()
+w.newhbox()
+w.newbutton(u"start",button1)
+w.newbutton(u"stop",button1)
+
+w.box1.show()
+w.box2.show()
+w.window.show()
+
+gtk.main()</code></pre>
+
+                <!-- <hr/>
+                    <div id="disqus_thread"></div>
+                    <script type="text/javascript">
+                       /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+                       var disqus_shortname = 'uliwebzone'; // required: replace example with your forum shortname
+            
+                       /* * * DON'T EDIT BELOW THIS LINE * * */
+                       (function() {
+                           var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                           dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                           (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                       })();
+                   </script>
+                   <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+                   <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+                -->
+                    <div class="tutorial-footer">
+                        <p>评论 <a id="global-comment-count" href="/tutorial/view_paragraph_comments/241?para=0" class="para-comments-count active right animated">0</a>
+                            <span class="gray">hejiasheng 于 2013-09-11 02:06:43+00:00 更新</span>
+                        </p>
+                    </div>
+                    
+                    <!-- JiaThis Button BEGIN -->
+<script type="text/javascript" src="http://v3.jiathis.com/code/jiathis_r.js?uid=1342595503212835&type=left&amp;btn=l1.gif" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+                
+                    <div class="alert alert-info">
+                        <a href="#" class="close" data-dismiss="alert">&times;</a>
+                        可以使用<i class="icon-arrow-left"></i>和<i class="icon-arrow-right"></i>来跳转到前一章节或后一章节。
+                        还可以使用<b>回车</b>来扩展或缩小文章区域。<b>C</b>键打开评论，<b>ESC</b>关闭评论。
+                    </div>
+                
+                    <div class="chapter-prev chapter-down animated">
+                        <a prev-chapter href="/tutorial/view_chapter/210"><i class="icon-arrow-left"></i> 5 多线程</a>
+                    </div>
+                    <div class="chapter-next chapter-down animated">
+                        <a next-chapter href="/tutorial/view_chapter/251">7 with..as <i class="icon-arrow-right"></i></a>
+                    </div>
+                    
+                </div>
+                
+            </div>
+        </div>
+        <div class="span3" id="right-side">
+            
+            <div id="toc-container" class="nano">
+            <div id="toc" class="content"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="para-comments" style="display:none;">
+</div>
+<style>
+#toc {top:140px;}
+</style>
+<script>
+    function viewport()
+    {
+        var e = window, a = 'inner';
+        if ( !( 'innerWidth' in window ) )
+        {
+            a = 'client';
+            e = document.documentElement || document.body;
+        }
+        return { width : e[ a+'Width' ] , height : e[ a+'Height' ] }
+    }
+    
+    //滚动插件
+    /*(function () {
+      $.fn.anchorScroll = function (options) {
+        var defaults = {
+          speed: 1100,
+          fx: "jswing",
+          offset: 0
+        };
+        //var version =  "1.0";
+        var options = $.extend(defaults, options);
+        return $(this).each(function () {
+          var element = this;
+          $(element).click(function (event) {
+            var elementClick = $(element).attr("href").replace(/\./g, '\\.');
+            var destination = $(elementClick).offset().top - options.offset;
+            $("html,body").animate({
+              scrollTop: destination
+            }, options.speed, options.fx);
+            //Stop links default events
+            event.preventDefault();
+            return false;
+          })
+        })
+      }
+    })(jQuery);
+    */
+    
+
+    $(function(){
+        //实现代码高亮
+        window.prettyPrint && prettyPrint();
+        
+        //増加标题探测
+        //$('body').scrollspy({target:'#titles', offset:50});
+        
+        $.ajax({
+            type:'GET',
+            dateType:'json',
+            url:'/tutorial/get_paragraph_comments_count/241',
+            success:function(data){
+                //増加气泡评论显示
+                $('a.comment_point').each(function(index, el){
+                    var id = $(el).attr('rel');
+                    var count = id in data?data[id]:0;
+                    var item = $('<a href="/tutorial/view_paragraph_comments/241?para=' + id + '" class="para-comments-count animated">'+count+'</a>')
+                        .css({position:'absolute', left:'-50px'});
+                    $(el).closest('p').prepend(item);
+                });
+                
+                if (data['0']){
+                    $('#global-comment-count').text(data['0']);
+                }
+                //处理pageslide
+                $('a.para-comments-count').pageslide({
+                    //'href':'#para-comments',
+                    iframe:false,
+                    direction:'right',
+                    width: '400px',
+                    onClick: function(e){
+                        $('a.para-comments-count').removeClass('active');
+                        $(this).addClass('active');
+                        //处理toTop
+                        reset_totop();
+                    },
+                    onClose: function(){
+                        $('a.para-comments-count').removeClass('active');
+                        //处理toTop
+                        reset_totop();
+                    }
+                });
+                
+            }
+        });
+        /*
+        $('p.tutorial_p').hover(function(e){
+            $(this).find('a.para-comments-count').addClass('swing');
+        }, function(e){
+            $(this).find('a.para-comments-count').removeClass('swing');
+        });
+        */
+        
+        $('.chapter-prev, .chapter-next').hover(function(e){
+            $(this).animate({opacity:1}, 500);
+        }, function(e){
+            $(this).animate({opacity:0.5}, 500);;
+        });
+        
+        //増加限制目录区高度的处理
+        //$('#titles').height(viewport().height - 160);
+        
+        //限定pageslide的高度
+        //$('#pageslide').height(viewport().height - 160);
+        //实现平滑滚动
+        //$('#titles a').anchorScroll({offset:50});
+        
+        function setup_toc(){
+            $('#toc').height(viewport().height - $('#toc').offset()['top'] - 40);
+            $('#toc').toc({
+                'selectors': 'h2,h3', //elements to use as headings
+                'highlightOffset': 0, //offset to trigger the next headline
+                'offset': 50
+            });
+        }
+        
+        setup_toc();
+        
+        $(window).resize(function(){
+        	setup_toc();
+        });
+        
+        
+        //増加代码提示
+        $('pre, .inline-tag').code_comment();
+        
+        //处理回到顶部显示
+        $('.outter').UItoTop({ easingType: 'easeOutQuart', text:'<i class="icon-arrow-up"></i>回到顶部' });
+        
+        //处理动态滚动条
+        //$("#toc-container").nanoScroller();
+        
+        //处理左键，右键前后翻页
+        $(document).bind('keydown.left', function(){
+            var el = $('a[prev-chapter]');
+            if (el.length>0){
+                el[0].click();
+            }
+        }).bind('keydown.right', function(){
+            var el = $('a[next-chapter]');
+            if (el.length>0){
+                el[0].click();
+            }
+        }).bind('keydown.return', function(){
+            $('.expander').click();
+        }).bind('keydown.c', function(){
+            $('a.para-comments-count').click();
+        });
+        
+        function reset_totop(){
+            var top = $('#toTop');
+            var that = $('.outter');
+            var left = $(that).outerWidth() + $(that).offset().left + 2;
+            top.offset({left:left, bottom:10});
+        }
+        
+        //处理expander事件，如果点击，则隐藏目录栏
+        $('.expander').click({'opened':false}, function(e){
+            if (!e.data.opened){
+                $('#article').removeClass('span8').addClass('span12');
+                $('#right-side').removeClass('span4').hide();
+                e.data.opened = true;
+                $(this).html('&laquo;');
+            }else{
+                $('#article').removeClass('span12').addClass('span8');
+                $('#right-side').addClass('span4').show();
+                e.data.opened = false;
+                $(this).html('&raquo;');
+            }
+            //处理toTop
+            reset_totop();
+        });
+        
+    });
+</script>
+
+
+
+<div class="container">
+  <footer class="row">
+  
+<p>
+Uliweb
+</p>
+
+  </footer>
+</div>
+      
+
+
+<!-- bottomlinks -->
+<script>$.ajaxSetup({cache:false, traditional:true});</script>
+<script type="text/javascript" src="/static/pageslide/jquery.pageslide.js?ver=2"></script>
+<script type="text/javascript" src="/static/toc/toc.js?ver=2"></script>
+
+
+  </body>
+</html>

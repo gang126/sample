@@ -1,0 +1,12 @@
+l1=[1,2,3]
+l2=[3,4,5]   l1+l2
+
+
+a1={'name':'jike','age':11}
+a2={'age':22} 
+a1.update(a2)
+
+
+f=open('file',"a+") 从后面追加
+f=open('file',"w+") 清除后重新写
+f=open('file',"r+") 从开始替换

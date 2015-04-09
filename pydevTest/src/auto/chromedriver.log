@@ -1,0 +1,46 @@
+[0.000][INFO]:      ChromeDriver 23.0.1240.0 C:\Program Files (x86)\Google\Chrome\Application\chromedriver.exe
+[0.504][FINE]:      Initializing session with capabilities {
+   "browserName": "chrome",
+   "chromeOptions": {
+      "args": [  ],
+      "extensions": [  ]
+   },
+   "javascriptEnabled": true,
+   "platform": "ANY",
+   "version": ""
+}
+
+[0.505][INFO]:      Launching chrome: "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" --enable-logging --log-level=1 --disable-hang-monitor --disable-prompt-on-repost --dom-automation --full-memory-crash-report --no-default-browser-check --no-first-run --disable-background-networking --disable-sync --disable-translate --disable-web-resources --safebrowsing-disable-auto-update --safebrowsing-disable-download-protection --disable-client-side-phishing-detection --disable-component-update --disable-default-apps --ignore-certificate-errors about:blank
+[1.079][INFO]:      Connected to Chrome successfully. Version: 30.0.1599.69
+[1.097][FINE]:      Command received (/session/86f66d8471c504d3f59bc76f1f70ae2b)
+[1.097][FINE]:      Command finished (/session/86f66d8471c504d3f59bc76f1f70ae2b) with response {
+   "sessionId": "86f66d8471c504d3f59bc76f1f70ae2b",
+   "status": 0,
+   "value": {
+      "acceptSslCerts": false,
+      "applicationCacheEnabled": false,
+      "browserConnectionEnabled": false,
+      "browserName": "chrome",
+      "chrome.chromedriverVersion": "23.0.1240.0",
+      "chrome.nativeEvents": false,
+      "cssSelectorsEnabled": true,
+      "databaseEnabled": false,
+      "handlesAlerts": true,
+      "javascriptEnabled": true,
+      "locationContextEnabled": false,
+      "nativeEvents": true,
+      "platform": "windows",
+      "rotatable": false,
+      "takesScreenshot": true,
+      "version": "30.0.1599.69",
+      "webStorageEnabled": true
+   }
+}
+
+[1.142][FINE]:      Command received (/session/86f66d8471c504d3f59bc76f1f70ae2b/url) with params {
+   "sessionId": "86f66d8471c504d3f59bc76f1f70ae2b",
+   "url": "https://wx.qq.com/"
+}
+
+[1.142][FINER]:     Waiting for all views to stop loading...
+[1.143][FINER]:     Done waiting for all views to stop loading
